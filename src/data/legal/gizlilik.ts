@@ -20,7 +20,7 @@ export const gizlilik: YasalMetin = {
     {
       baslik: 'Kapsam',
       paragraflar: [
-        'Bu politika dogancanh.github.io/monti-labs adresindeki web sitesi için geçerlidir. Sitenin sahibi ve veri sorumlusu [RESMİ UNVAN] şirketidir.',
+        'Bu politika montilabs.co adresindeki web sitesi için geçerlidir. Sitenin sahibi ve veri sorumlusu [RESMİ UNVAN] şirketidir.',
         'Kişisel verilerin işlenmesine dair 6698 sayılı Kanun kapsamındaki aydınlatma yükümlülüğü ayrı bir metinde ele alınmıştır. KVKK Aydınlatma Metni sayfasına bakabilirsiniz.',
       ],
     },

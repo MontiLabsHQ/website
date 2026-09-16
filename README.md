@@ -4,7 +4,7 @@
 şirketinin kurumsal sitesi. Türkçe ve İngilizce.
 
 Astro 5, statik çıktı, sunucu yok. GitHub Pages üzerinde
-`dogancanh.github.io/monti-labs` adresinde yayınlanıyor.
+`montilabshq.github.io/website` adresinde yayınlanıyor.
 
 Tasarım yönü: Işık. Karar kaydı
 `docs/superpowers/specs/2026-09-13-isik-yonu.md`; önceki kobalt yönünün
@@ -81,7 +81,7 @@ Fontsource'un hazır altkümeleri aynı iş için 172 KB istiyordu.
 
 Font yüzü `src/layouts/Temel.astro` içinde satır içi üretiliyor, ayrı
 bir CSS dosyasında değil. Nedeni taban yolu: düz CSS içinde
-`/monti-labs` önekini okumanın yolu yok.
+`/website` önekini okumanın yolu yok.
 
 ### Renk ve erişilebilirlik
 
@@ -104,8 +104,8 @@ Astro yerleşik i18n. Türkçe varsayılan ve önek almıyor, İngilizce
 `/en` altında.
 
 ```
-/monti-labs/       Türkçe
-/monti-labs/en/    İngilizce
+/website/       Türkçe
+/website/en/    İngilizce
 ```
 
 Metinler `src/icerik/tr.ts` ve `src/icerik/en.ts` içinde, ikisi de
@@ -125,7 +125,7 @@ Tam adres üretirken iki yardımcı var:
 | `mutlak()` | taban yolu zaten eklenmiş | `sayfaYolu()` çıktısı |
 
 `sayfaYolu()` çıktısını `tamAdres()` içine verirseniz taban ikinci kez
-eklenir ve adres `/monti-labs/monti-labs/` olur.
+eklenir ve adres `/website/website/` olur.
 
 Yasal metinler yalnızca Türkçe yayınlanıyor. İngilizce sayfa da aynı
 adreslere bağlanıyor, alt bilgide dil notu gösteriliyor.
@@ -164,14 +164,22 @@ görünmez. Yayına çıkmadan önce doldurulmalı.
 
 ## Yayın
 
-Asıl adres montilabs.co, Vercel üzerinde ve `semihpehlivan/montilabs-website`
-deposuna bağlı. Yerel depoda iki uzak var: `origin` (dogancanh/monti-labs)
-ve `montilabs` (semihpehlivan/montilabs-website); `main` ikisine de
-itiliyor. Vercel yalnızca projeye erişimi olan GitHub hesabının
-commit'lerini yayına alıyor.
+Depo `MontiLabsHQ/website`. `main` dalına her gönderimde
+`.github/workflows/yayinla.yml` siteyi derleyip GitHub Pages'e
+gönderiyor. Adres ve taban yolu iş akışında `actions/configure-pages`
+çıktısından alınıyor; depo adı ya da alan adı değişince iş akışına
+dokunmak gerekmiyor.
 
-GitHub Pages kopyası `scripts/yayinla.sh` ile gönderiliyor. Actions iş
-akışı kaldırıldı; faturalama nedeniyle çalışmıyordu.
+Discord bildirimi için `PUBLIC_DISCORD_WEBHOOK` depo gizli değişkeni
+olarak tanımlı olmalı (Settings > Secrets and variables > Actions).
+Tanımlı değilse bildirim kapalı kalır, form yine çalışır.
+
+`scripts/yayinla.sh` yedek yol: Actions çalışmazsa gh-pages dalına
+elle gönderir. Kullanmadan önce Pages kaynağını gh-pages dalına almak
+gerekir.
+
+Vercel dağıtımı (`semihpehlivan/montilabs-website`) eski yol; DNS
+GitHub Pages'e alındığında kapatılacak.
 
 ### Arama motorları
 
@@ -192,19 +200,11 @@ Discord bildirimi `PUBLIC_DISCORD_WEBHOOK` ortam değişkeninden
 okunuyor. Adres depoda durmuyor, `scripts/yayinla.sh` enjekte ediyor.
 Ayrıntı ve risk notu `src/data/site.ts` içinde.
 
-### montilabs.co (Vercel)
+### montilabs.co
 
-Asıl adres. Vercel projesi bu depoya bağlı olduğunda `main`'e her
-gönderim yayına çıkar. `astro.config.mjs` Vercel ortamını (`VERCEL=1`)
-kendisi tanıyor: taban yolu `/`, site adresi
-`VERCEL_PROJECT_PRODUCTION_URL`. Panelde ortam değişkeni gerekmiyor.
-
-GitHub Pages adresi (`dogancanh.github.io/monti-labs`) alt yolda
-duruyor ve `scripts/yayinla.sh` ile yayınlanıyor; Actions iş akışı
-faturalama nedeniyle çalışmıyor.
-
-Koddaki bütün yollar yardımcılardan üretildiği için iki hedef için de
-başka değişiklik gerekmiyor.
+Asıl adres. Pages ayarlarında özel alan adı olarak tanımlanınca iş akışı
+taban yolunu `/` yapar ve site kökte durur. Koddaki bütün yollar
+yardımcılardan üretildiği için başka değişiklik gerekmez.
 
 ---
 

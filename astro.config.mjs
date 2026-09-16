@@ -8,8 +8,10 @@ import sitemap from '@astrojs/sitemap'
    derleme ortamında VERCEL=1 ve VERCEL_PROJECT_PRODUCTION_URL tanımlı;
    ikisi de kendiliğinden okunuyor, panelde ayar gerekmiyor.
 
-   dogancanh.github.io/monti-labs (GitHub Pages): proje sayfası olduğu
-   için adres bir alt yolda duruyor ve `base` zorunlu. Koddaki mutlak
+   montilabshq.github.io/website (GitHub Pages): proje sayfası olduğu
+   için adres bir alt yolda duruyor ve `base` zorunlu. Actions iş akışı
+   SITE_URL ve BASE_PATH değerlerini Pages yapılandırmasından alıp geçer;
+   özel alan adı tanımlanınca taban yolu kendiliğinden "/" olur. Koddaki mutlak
    yollar src/lib/yol.ts içindeki yardımcıyla üretilir; elle yazılan
    "/..." yolları taban yolunu atlar ve alt yolda kırılır.
 
@@ -19,13 +21,13 @@ const VERCEL = process.env.VERCEL === '1'
 const VERCEL_ALAN = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? 'montilabs.co'
 
 const SITE_URL =
-  process.env.SITE_URL ?? (VERCEL ? `https://${VERCEL_ALAN}` : 'https://dogancanh.github.io')
-const TABAN = process.env.BASE_PATH ?? (VERCEL ? '/' : '/monti-labs')
+  process.env.SITE_URL ?? (VERCEL ? `https://${VERCEL_ALAN}` : 'https://montilabshq.github.io')
+const TABAN = process.env.BASE_PATH ?? (VERCEL ? '/' : '/website')
 
 /* Türkçe varsayılan dil ve önek almıyor, İngilizce /en altında duruyor.
    Alt yolla birlikte adresler şöyle çıkıyor:
-     /monti-labs/      Türkçe
-     /monti-labs/en/   İngilizce */
+     /website/      Türkçe
+     /website/en/   İngilizce */
 const DILLER = ['tr', 'en']
 const VARSAYILAN_DIL = 'tr'
 

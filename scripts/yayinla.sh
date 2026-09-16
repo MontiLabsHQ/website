@@ -4,10 +4,10 @@
 #
 #   ./scripts/yayinla.sh  ["commit mesajı"]
 #
-# GitHub Actions faturalama nedeniyle çalışmadığı sürece yayın
-# bu betikle yapılır. Actions tekrar çalışır hale gelince
-# depo ayarlarından Pages kaynağını "GitHub Actions"a almak
-# yeterli, bu betiğe gerek kalmaz.
+# Asıl yayın .github/workflows/yayinla.yml ile Actions üzerinden
+# yapılır. Bu betik Actions'ın çalışmadığı durumlar için yedektir;
+# kullanmadan önce depo ayarlarından Pages kaynağını gh-pages dalına
+# almak gerekir.
 #
 # Betik ne yapar:
 #   1. Kaynak kodda commit edilmemiş değişiklik varsa uyarır
@@ -18,8 +18,8 @@
 
 set -euo pipefail
 
-DEPO="dogancanh/monti-labs"
-ADRES="https://dogancanh.github.io/monti-labs/"
+DEPO="MontiLabsHQ/website"
+ADRES="https://montilabshq.github.io/website/"
 MESAJ="${1:-Site guncellemesi}"
 
 kok="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

@@ -1,7 +1,7 @@
 /* ============================================================
    Yol yardımcısı
 
-   Site GitHub Pages'te bir alt yolda duruyor (/monti-labs/).
+   Site GitHub Pages'te bir alt yolda duruyor (/website/).
    Elle yazılan "/logo.png" gibi yollar bu tabanı atlar ve yayında
    404 verir. Bütün mutlak yollar bu yardımcıdan geçer.
 
@@ -15,10 +15,10 @@ const taban = import.meta.env.BASE_URL.replace(/\/+$/, '')
 /**
  * Site içi bir yolu taban yoluyla birleştirir.
  *
- *   yol('/kvkk')        -> '/monti-labs/kvkk'
- *   yol('/')            -> '/monti-labs/'
+ *   yol('/kvkk')        -> '/website/kvkk'
+ *   yol('/')            -> '/website/'
  *   yol('#iletisim')    -> '#iletisim'        (sayfa içi bağlantı)
- *   yol('/#iletisim')   -> '/monti-labs/#iletisim'
+ *   yol('/#iletisim')   -> '/website/#iletisim'
  *
  * Dış bağlantılar ve mailto adresleri olduğu gibi döner.
  */
@@ -32,13 +32,13 @@ export function yol(hedef: string): string {
 
 /** Sitenin kökü. Ortam değişkeni verilmediyse GitHub Pages adresi. */
 const kok = (site: URL | undefined): string =>
-  (site?.origin ?? 'https://dogancanh.github.io').replace(/\/+$/, '')
+  (site?.origin ?? 'https://montilabs.co').replace(/\/+$/, '')
 
 /**
  * Taban yolu HENÜZ EKLENMEMİŞ bir yoldan tam adres üretir.
  * OG görseli gibi varlıklar için.
  *
- *   tamAdres('/og.png') -> 'https://.../monti-labs/og.png'
+ *   tamAdres('/og.png') -> 'https://.../website/og.png'
  */
 export function tamAdres(hedef: string, site: URL | undefined): string {
   return kok(site) + yol(hedef)
@@ -47,9 +47,9 @@ export function tamAdres(hedef: string, site: URL | undefined): string {
 /**
  * Taban yolu ZATEN EKLENMİŞ bir yoldan tam adres üretir.
  * sayfaYolu() çıktısı için bunu kullanın; tamAdres() kullanırsanız
- * taban ikinci kez eklenir ve adres /monti-labs/monti-labs/ olur.
+ * taban ikinci kez eklenir ve adres /website/website/ olur.
  *
- *   mutlak(sayfaYolu('/', 'en')) -> 'https://.../monti-labs/en/'
+ *   mutlak(sayfaYolu('/', 'en')) -> 'https://.../website/en/'
  */
 export function mutlak(tabanliYol: string, site: URL | undefined): string {
   return kok(site) + tabanliYol

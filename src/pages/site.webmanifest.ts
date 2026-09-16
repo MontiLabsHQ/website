@@ -3,7 +3,7 @@ import { yol } from '../lib/yol'
 
 /* Manifest, taban yolunu bilmek zorunda olduğu için statik dosya
    yerine rota olarak üretiliyor. public/ altında sabit dosya olsaydı
-   /monti-labs/ ön ekini alamaz, ikonlar 404 verirdi. */
+   /website/ ön ekini alamaz, ikonlar 404 verirdi. */
 export const GET: APIRoute = () => {
   const manifest = {
     name: 'Monti Labs',

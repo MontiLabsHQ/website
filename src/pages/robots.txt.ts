@@ -6,7 +6,7 @@ import { ARAMA_MOTORLARINA_ACIK } from '../data/site'
    değerini true yapmak yeterli; sayfa başlıklarındaki noindex
    etiketi de aynı değere bakıyor. */
 export const GET: APIRoute = ({ site }) => {
-  const kok = (site?.href ?? 'https://dogancanh.github.io').replace(/\/+$/, '')
+  const kok = (site?.href ?? 'https://montilabs.co').replace(/\/+$/, '')
   const taban = import.meta.env.BASE_URL.replace(/\/+$/, '')
 
   const govde = ARAMA_MOTORLARINA_ACIK

@@ -2,7 +2,7 @@
    Diller
 
    Türkçe varsayılan dil ve adreste önek almıyor. İngilizce /en
-   altında duruyor. Taban yolu (/monti-labs) ikisinin de başında.
+   altında duruyor. Taban yolu (/website) ikisinin de başında.
 
    Sayfa bağlantıları sayfaYolu() üstünden üretilir, varlık yolları
    (görsel, font, ikon) yol() üstünden. İkisini karıştırmayın:
@@ -34,9 +34,9 @@ export type CiftDil<T> = Record<Dil, T>
 /**
  * Site içi bir sayfa yolunu dil öneki ve taban yoluyla birleştirir.
  *
- *   sayfaYolu('/', 'tr')          -> '/monti-labs/'
- *   sayfaYolu('/', 'en')          -> '/monti-labs/en/'
- *   sayfaYolu('/#iletisim', 'en') -> '/monti-labs/en/#iletisim'
+ *   sayfaYolu('/', 'tr')          -> '/website/'
+ *   sayfaYolu('/', 'en')          -> '/website/en/'
+ *   sayfaYolu('/#iletisim', 'en') -> '/website/en/#iletisim'
  *   sayfaYolu('#iletisim', 'en')  -> '#iletisim'
  *
  * Yasal sayfalar tek dilde tutulduğu için onlara bağlanırken
