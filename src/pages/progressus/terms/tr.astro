@@ -1,0 +1,17 @@
+---
+import ProgressusSayfa from '../../../layouts/ProgressusSayfa.astro'
+import { metniHtmleCevir } from '../../../lib/progressusMetin'
+import kaynak from '../../../data/legal/progressus/terms-tr.md?raw'
+
+const html = metniHtmleCevir(kaynak)
+---
+
+<ProgressusSayfa
+  dil="tr"
+  baslik="Progressus Kullanım Şartları · Monti Labs"
+  aciklama="Monti Labs'in Progressus uygulaması için kullanım şartları."
+  sayfa="/progressus/terms/tr"
+  diger={{ yol: '/progressus/terms', yazi: 'English', dil: 'en' }}
+>
+  <Fragment set:html={html} />
+</ProgressusSayfa>

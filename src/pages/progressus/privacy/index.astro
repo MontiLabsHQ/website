@@ -1,0 +1,17 @@
+---
+import ProgressusSayfa from '../../../layouts/ProgressusSayfa.astro'
+import { metniHtmleCevir } from '../../../lib/progressusMetin'
+import kaynak from '../../../data/legal/progressus/privacy-en.md?raw'
+
+const html = metniHtmleCevir(kaynak)
+---
+
+<ProgressusSayfa
+  dil="en"
+  baslik="Progressus Privacy Policy · Monti Labs"
+  aciklama="Privacy Policy for the Progressus app by Monti Labs."
+  sayfa="/progressus/privacy"
+  diger={{ yol: '/progressus/privacy/tr', yazi: 'Türkçe', dil: 'tr' }}
+>
+  <Fragment set:html={html} />
+</ProgressusSayfa>

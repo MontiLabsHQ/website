@@ -1,0 +1,22 @@
+---
+import ProgressusSayfa from '../../layouts/ProgressusSayfa.astro'
+import { yol } from '../../lib/yol'
+---
+
+<ProgressusSayfa
+  dil="en"
+  baslik="Progressus · Monti Labs"
+  aciklama="Support, Terms of Use and Privacy Policy for the Progressus app by Monti Labs."
+  sayfa="/progressus"
+>
+  <h1>Progressus</h1>
+  <p lang="en">Turn your habits into a game you want to play every day.</p>
+  <p lang="tr">Alışkanlıklarını her gün oynamak isteyeceğin bir oyuna çevir.</p>
+  <p>Support / Destek: <a href="mailto:info@montilabs.co">info@montilabs.co</a></p>
+  <ul>
+    <li><a href={yol('/progressus/terms')} hreflang="en" lang="en">Terms of Use</a></li>
+    <li><a href={yol('/progressus/privacy')} hreflang="en" lang="en">Privacy Policy</a></li>
+    <li><a href={yol('/progressus/terms/tr')} hreflang="tr" lang="tr">Kullanım Şartları</a></li>
+    <li><a href={yol('/progressus/privacy/tr')} hreflang="tr" lang="tr">Gizlilik Politikası</a></li>
+  </ul>
+</ProgressusSayfa>

@@ -31,6 +31,9 @@ interface Props {
   sayfa?: string
   /** Yasal sayfalar gibi tek dilli sayfalarda başlık ve alt bilgi sadeleşir. */
   tekDil?: boolean
+  /** Kanonik adres sayfa yolundan türetilmesin diye: dil önekinden arınmış, taban yolu eklenmemiş
+      yol. Verilmezse sayfa ve dilden üretilir. Dili İngilizce olup önek almayan sayfalar için. */
+  kanonikYol?: string
 }
 
 const {
@@ -40,6 +43,7 @@ const {
   aciklama = icerik.meta.aciklama,
   sayfa = '/',
   tekDil = false,
+  kanonikYol,
 } = Astro.props
 
 const anaFont = yol('/fontlar/archivo-tr-en.woff2')
@@ -72,7 +76,7 @@ const fontYuzu = `
 }
 `.trim()
 
-const kanonik = mutlak(sayfaYolu(sayfa, dil), Astro.site)
+const kanonik = kanonikYol ? mutlak(yol(kanonikYol), Astro.site) : mutlak(sayfaYolu(sayfa, dil), Astro.site)
 const ogGorsel = tamAdres('/og.png', Astro.site)
 const yil = new Date().getFullYear()
 ---

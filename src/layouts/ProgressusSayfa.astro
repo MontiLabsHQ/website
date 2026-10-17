@@ -1,0 +1,120 @@
+---
+/* Progressus destek ve yasal sayfaları için kabuk.
+
+   Yasal sayfa kabuğuyla (Yasal.astro) aynı yerleşim; fark, içeriğin
+   markdown'dan çevrilmiş HTML olarak gelmesi (src/lib/progressusMetin.ts)
+   ve sayfanın İngilizce de olabilmesi. Sayfalar dil önekiyle değil
+   /progressus altında duruyor; kanonik adres bu yüzden açıkça veriliyor. */
+
+import Temel from './Temel.astro'
+import { icerikAl } from '../icerik'
+import { yol } from '../lib/yol'
+import type { Dil } from '../lib/diller'
+
+interface Props {
+  dil: Dil
+  baslik: string
+  aciklama: string
+  /** Dil önekinden arınmış, taban yolu eklenmemiş sayfa yolu. */
+  sayfa: string
+  /** Diğer dildeki sürüm: yol (taban yolu eklenmemiş), bağlantı yazısı, dil kodu. */
+  diger?: { yol: string; yazi: string; dil: 'tr' | 'en' }
+}
+
+const { dil, baslik, aciklama, sayfa, diger } = Astro.props
+const icerik = icerikAl(dil)
+---
+
+<Temel dil={dil} icerik={icerik} baslik={baslik} aciklama={aciklama} sayfa={sayfa} kanonikYol={sayfa} tekDil>
+  <article class="bolum yasal" data-tema="kagit">
+    <div class="kabuk ic">
+      {
+        diger && (
+          <p class="dil-baglantisi">
+            <a href={yol(diger.yol)} hreflang={diger.dil} lang={diger.dil}>
+              {diger.yazi}
+            </a>
+          </p>
+        )
+      }
+      <div class="yazi">
+        <slot />
+      </div>
+    </div>
+  </article>
+</Temel>
+
+<style>
+  .yasal {
+    padding-block: calc(var(--b8) + var(--b5)) var(--b8);
+  }
+
+  .ic {
+    max-width: 62rem;
+  }
+
+  .dil-baglantisi {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ikincil);
+  }
+
+  .dil-baglantisi a,
+  .yazi :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .yazi {
+    max-width: 68ch;
+    margin-top: var(--b3);
+  }
+
+  .yazi :global(h1) {
+    font-variation-settings: 'wdth' 110; font-weight: 600; font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem); line-height: 1.02; letter-spacing: -0.03em;
+  }
+
+  .yazi :global(h2) {
+    font-variation-settings: 'wdth' 106;
+    font-weight: 600;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-top: var(--b6);
+    margin-bottom: var(--b3);
+    
+  }
+
+  .yazi :global(p),
+  .yazi :global(li) {
+    font-size: 1.0625rem; line-height: 1.5;
+  }
+
+  .yazi :global(p) {
+    margin-top: var(--b3);
+  }
+
+  .yazi :global(h1 + p) {
+    margin-top: var(--b4);
+  }
+
+  .yazi :global(ul) {
+    list-style: disc;
+    padding-left: 1.4em;
+    margin-top: var(--b3);
+  }
+
+  .yazi :global(ol) {
+    list-style: decimal;
+    padding-left: 1.6em;
+    margin-top: var(--b3);
+  }
+
+  .yazi :global(li + li) {
+    margin-top: 0.4em;
+  }
+
+  .yazi :global(.soluk-satir) {
+    color: var(--ikincil);
+  }
+</style>
